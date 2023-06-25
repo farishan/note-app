@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note App</title>
+  <style>
+    body {
+      margin: auto;
+      max-width: 960px;
+      padding: 1rem;
+    }
+
+    .note-input {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <textarea name="note" id="note" cols="30" rows="10" class="note-input" autofocus></textarea>
+
+  <script>
+    const KEY = 'note'
+
+    const noteInput = document.getElementById('note')
+    noteInput.addEventListener('keyup', function(e) {
+      localStorage.setItem('note', JSON.stringify(e.target.value))
+    })
+
+    window.addEventListener('load', function() {
+      const savedNote = localStorage.getItem(KEY)
+      if (savedNote) {
+        noteInput.value = JSON.parse(savedNote)
+      }
+    })
+
+    /* @TODO implement dark mode */
+    // const isDark = window.matchMedia("(prefers-color-scheme:dark)").matches
+    // console.log(isDark)
+  </script>
+</body>
+</html>
