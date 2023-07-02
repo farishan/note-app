@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Note App</title>
   <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-  <textarea name="note" id="note" cols="30" rows="10" class="note-input" autofocus style="width: 100%; max-width: 960px; margin: 0 auto; display: block; padding: 8px;"></textarea>
-
   <script>
-    const KEY = 'note'
+    (function () {
+      const STORAGE_KEY = 'note'
+      const rootDOM = document.body
+      const inputDOM = document.createElement('textarea')
+      inputDOM.setAttribute('cols', 30)
+      inputDOM.setAttribute('rows', 10)
+      inputDOM.setAttribute('style', 'width: 100%; max-width: 960px; margin: 0 auto; display: block; padding: 8px;')
 
-    const noteInput = document.getElementById('note')
-    noteInput.addEventListener('keyup', function(e) {
-      localStorage.setItem('note', JSON.stringify(e.target.value))
-    })
-
-    window.addEventListener('load', function() {
-      const savedNote = localStorage.getItem(KEY)
-      if (savedNote) {
-        noteInput.value = JSON.parse(savedNote)
+      function renderInput() {
+        rootDOM.appendChild(inputDOM)
+        inputDOM.focus()
       }
-    })
+
+      inputDOM.addEventListener('keyup', function (e) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(e.target.value))
+      })
+
+      window.addEventListener('load', function () {
+        const savedNote = localStorage.getItem(STORAGE_KEY)
+        if (savedNote) inputDOM.value = JSON.parse(savedNote)
+        renderInput()
+      })
+    })()
   </script>
 </body>
+
 </html>
