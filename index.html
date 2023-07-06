@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A webapp for note-taking">
   <title>Note App</title>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -16,7 +17,7 @@
       const inputDOM = document.createElement('textarea')
       inputDOM.setAttribute('cols', 30)
       inputDOM.setAttribute('rows', 10)
-      inputDOM.setAttribute('style', 'width: 100%; max-width: 960px; margin: 0 auto; display: block; padding: 8px;')
+      inputDOM.setAttribute('style', 'width: 100%; max-width: 600px; margin: 0 auto; display: block; padding: 8px; background: transparent; color: inherit; border: 1px solid #aaaaaa; border-radius: 4px;')
 
       function renderInput() {
         rootDOM.appendChild(inputDOM)
