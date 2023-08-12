@@ -4,7 +4,8 @@ An application for note-taking.
 
 ## Functional
 - [x] Write note
-- [x] Autosave (`localStorage`)
+- [x] Auto-save (`localStorage`)
+- [ ] Plugin system
 
 ## Presentational
 - [x] Responsive

@@ -11,29 +11,42 @@
 
 <body>
   <script>
-    (function () {
-      const STORAGE_KEY = 'note'
-      const rootDOM = document.body
-      const inputDOM = document.createElement('textarea')
-      inputDOM.setAttribute('cols', 30)
-      inputDOM.setAttribute('rows', 10)
-      inputDOM.setAttribute('style', 'width: 100%; max-width: 600px; margin: 0 auto; display: block; padding: 8px; background: transparent; color: inherit; border: 1px solid #aaaaaa; border-radius: 4px;')
-
-      function renderInput() {
-        rootDOM.appendChild(inputDOM)
-        inputDOM.focus()
+    class App {
+      STORAGE_KEY = 'note'
+      DOM = {
+        root: document.body,
+        input: document.createElement('textarea')
       }
 
-      inputDOM.addEventListener('keyup', function (e) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(e.target.value))
-      })
+      constructor() {
+        /* styling */
+        this.DOM.input.setAttribute('cols', 30)
+        this.DOM.input.setAttribute('rows', 10)
+        this.DOM.input.style.padding = '8px'
+        this.DOM.input.style.color = 'inherit'
+        this.DOM.input.style.borderRadius = '4px'
+        this.DOM.input.style.background = 'transparent'
+        this.DOM.input.style.border = '1px solid #aaaaaa'
 
-      window.addEventListener('load', function () {
-        const savedNote = localStorage.getItem(STORAGE_KEY)
-        if (savedNote) inputDOM.value = JSON.parse(savedNote)
-        renderInput()
-      })
-    })()
+        this.DOM.input.addEventListener('keyup', (e) => {
+          localStorage.setItem(this.STORAGE_KEY, JSON.stringify(e.target.value))
+        })
+      }
+
+      start() {
+        const savedNote = localStorage.getItem(this.STORAGE_KEY)
+        if (savedNote) this.DOM.input.value = JSON.parse(savedNote)
+        this.DOM.root.appendChild(this.DOM.input)
+        this.DOM.input.focus()
+      }
+    }
+
+    const app = new App()
+    app.DOM.input.style.width = '100%'
+    app.DOM.input.style.margin = '0 auto'
+    app.DOM.input.style.display = 'block'
+    app.DOM.input.style.maxWidth = '600px'
+    app.start()
   </script>
 </body>
 
